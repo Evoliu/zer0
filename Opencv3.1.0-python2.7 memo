@@ -1,0 +1,27 @@
+(1) sift = cv2.SIFT(100) are not available anymore, only if we install/rebuild opencv 3.1.0 with the contributions: 
+brew install opencv - -with-contrib  (Mac OS).
+
+I haven't tried on Windows and Ubuntu.
+--------------------------------------------------------------------------------------------------------------------
+
+(2) After reinstalling opencv following (1)'s method, we can use the followings in the scripts to create sift-object and detect&compute key point:
+
+i) sift = cv2.ORB_create(100)
+ii) kp, des = sift.compute(image, kp) 
+iii) drawKeypoints(image, kp, color=(255,0,0))  
+--------------------------------------------------------------------------------------------------------------------
+
+(3) If the following error happens, just add one more command---"cv2.ocl.setUseOpenCL(False)"
+
+The error:
+
+Traceback (most recent call last):
+
+  File "sift.py", line 24, in <module>
+
+    kp, des = sift.compute(image, kp)
+
+cv2.error: /tmp/opencv320160508-7843-1dh6e8p/opencv-3.1.0/modules/python/src2/cv2.cpp:163: error: (-215) The data should normally be NULL! in function allocate
+
+Cleaned up camera.
+
